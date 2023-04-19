@@ -1,0 +1,6 @@
+test
+.env
+README.md
+dist
+*.egg-info
+build
