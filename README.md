@@ -82,10 +82,10 @@ scan_int_multi(start_num, end_num, email_length, output_file, batch_num, process
 git clone https://github.com/Annihilater/gmail_scanner
 cd gmail_scanner
 cp .env.example .env
+touch results.csv
 
 # edit the .env file
 
-docker pull klause/gmail_scanner:latest
 docker-compose up -d
 ```
 
