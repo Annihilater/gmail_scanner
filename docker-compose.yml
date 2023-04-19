@@ -1,9 +1,6 @@
 version: '3'
 services:
   gmail_scanner:
-    build:
-      context: .
-      dockerfile: Dockerfile
     image: klause/gmail_scanner:20230419
     container_name: gmail_scanner
     working_dir: /opt/apps/gmail_scanner
