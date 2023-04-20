@@ -10,3 +10,4 @@ services:
     volumes:
       - ./.env:/opt/apps/gmail_scanner/.env
       - ./results.csv:/opt/apps/gmail_scanner/results.csv
+      - ./logs:/opt/apps/gmail_scanner/logs
