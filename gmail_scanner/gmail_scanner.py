@@ -128,11 +128,14 @@ def scan_int_multi(start: int, end: int, email_length: int, output_file: str, ba
     :param processes: default 4
     :return:
     """
+    current_batch = 1
     for i in range(start, end, batch):
+        print(f"current_batch: {current_batch} current_num: {i}")
         args = []
         for j in range(i, i + batch):
             email_prefix = str(j).zfill(email_length)
             args.append([email_prefix, output_file])
 
         with Pool(processes=processes) as pool:
-            print(list((tqdm(pool.imap(task, args), total=len(args), desc='process'))))
+            list((tqdm(pool.imap(task, args), total=len(args), desc='process')))
+        current_batch += 1
