@@ -75,7 +75,7 @@ def check_one_gmail(email_prefix: str, output_file: str = None) -> dict:
     if status:
         spent = round(time.time() - start_time, 4)
         text = f"{current_time()},{spent},{email_prefix},{status}\n"
-        print(text)
+
         if output_file is not None:
             with open(output_file, mode='a') as f:
                 f.write(text)
@@ -128,9 +128,14 @@ def scan_int_multi(start: int, end: int, email_length: int, output_file: str, ba
     :param processes: default 4
     :return:
     """
+    log_file_name = f"gmail_scanner_{current_time()}.log"
+
     current_batch = 1
     for i in range(start, end, batch):
-        print(f"current_batch: {current_batch} current_num: {i}")
+        with open(log_file_name, mode='a', encoding='utf8') as f:
+            text = f"current_batch: {current_batch} current_num: {i}\n"
+            f.write(text)
+
         args = []
         for j in range(i, i + batch):
             email_prefix = str(j).zfill(email_length)

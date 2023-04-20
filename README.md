@@ -21,6 +21,10 @@ The program will return only one results:
 
 ## Update
 
+### 1.0.3
+
+- Feat: log to file
+
 ### 1.0.2
 
 - Fixed: print None
