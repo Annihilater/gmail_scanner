@@ -21,7 +21,11 @@ The program will return only one results:
 
 ## Update
 
-### 1.0.4
+### 1.0.6
+
+- Feat: support for special num
+
+### 1.0.5
 
 - Fixed: logs dir
 
@@ -98,7 +102,7 @@ scan_int_multi(start_num, end_num, email_length, output_file, batch_num, process
 ```bash
 git clone https://github.com/Annihilater/gmail_scanner
 cd gmail_scanner
-cp .env.example .env
+cp config-example.yml config.yml
 touch results.csv
 
 # edit the .env file

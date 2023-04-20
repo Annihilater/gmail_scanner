@@ -144,3 +144,97 @@ def scan_int_multi(start: int, end: int, email_length: int, output_file: str, ba
         with Pool(processes=processes) as pool:
             list((tqdm(pool.imap(task, args), total=len(args), desc='process')))
         current_batch += 1
+
+
+def scan_int_multi_specific(email_format: dict, output_file: str, batch: int = 1000,
+                            processes: int = 4) -> None:
+    """
+    scan digital gmail for multi process, fast
+    Because the number of gmail is too large, it is processed in batches,
+    and each batch uses a multi-process method to check whether it is registered
+    :param email_format:
+    :param output_file:
+    :param batch: default 1000, When processing in batches, the number of batches
+    :param processes: default 4
+    :return:
+    # email_format = {
+    #     1: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    #     2: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    #     3: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    #     4: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    #     5: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    #     6: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    #     7: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    # }
+    """
+    log_file_name = f"logs/gmail_scanner_{current_time()}.log"
+
+    format_length = len(email_format)
+
+    email_prefix_list = []
+    for i in email_format[1]:
+        for j in email_format[2]:
+            for k in email_format[3]:
+                for m in email_format[4]:
+                    for n in email_format[5]:
+                        for o in email_format[6]:
+                            email_prefix = str(i).zfill(1) + \
+                                           str(j).zfill(1) + \
+                                           str(k).zfill(1) + \
+                                           str(m).zfill(1) + \
+                                           str(n).zfill(1) + \
+                                           str(o).zfill(1)
+
+                            if format_length >= 7:
+                                for p in email_format[7]:
+                                    email_prefix = str(i).zfill(1) + \
+                                                   str(j).zfill(1) + \
+                                                   str(k).zfill(1) + \
+                                                   str(m).zfill(1) + \
+                                                   str(n).zfill(1) + \
+                                                   str(o).zfill(1) + \
+                                                   str(p).zfill(1)
+
+                                    if format_length >= 8:
+                                        for q in email_format[8]:
+                                            email_prefix = str(i).zfill(1) + \
+                                                           str(j).zfill(1) + \
+                                                           str(k).zfill(1) + \
+                                                           str(m).zfill(1) + \
+                                                           str(n).zfill(1) + \
+                                                           str(o).zfill(1) + \
+                                                           str(p).zfill(1) + \
+                                                           str(q).zfill(1)
+
+                                            if format_length >= 9:
+                                                for r in email_format[9]:
+                                                    email_prefix = str(i).zfill(1) + \
+                                                                   str(j).zfill(1) + \
+                                                                   str(k).zfill(1) + \
+                                                                   str(m).zfill(1) + \
+                                                                   str(n).zfill(1) + \
+                                                                   str(o).zfill(1) + \
+                                                                   str(p).zfill(1) + \
+                                                                   str(q).zfill(1) + \
+                                                                   str(r).zfill(1)
+                                            else:
+                                                email_prefix_list.append(email_prefix)
+                                    else:
+                                        email_prefix_list.append(email_prefix)
+                            else:
+                                email_prefix_list.append(email_prefix)
+
+    current_batch = 1
+    for i in range(1, len(email_prefix_list), batch):
+        with open(log_file_name, mode='a', encoding='utf8') as f:
+            text = f"current_batch: {current_batch} current_num: {i} total: {len(email_prefix_list)}\n"
+            f.write(text)
+
+        args = []
+        for j in range(i, i + batch):
+            email_prefix = email_prefix_list[j]
+            args.append([email_prefix, output_file])
+
+        with Pool(processes=processes) as pool:
+            list((tqdm(pool.imap(task, args), total=len(args), desc='process')))
+        current_batch += 1

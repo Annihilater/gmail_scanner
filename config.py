@@ -7,36 +7,39 @@
 """
 config model
 """
-import os
+import yaml
 
-from dotenv import load_dotenv
-
-load_dotenv(verbose=True)
-
-CHECK_ONE = os.getenv('CHECK_ONE')
-CHECK_ONE = True if CHECK_ONE.lower() == 'true' else False
-
-CHECK_MANY_BY_SINGLE = os.getenv('CHECK_MANY_BY_SINGLE')
-CHECK_MANY_BY_SINGLE = True if CHECK_MANY_BY_SINGLE.lower() == 'true' else False
-
-CHECK_MANY_BY_MULTI = os.getenv('CHECK_MANY_BY_MULTI')
-CHECK_MANY_BY_MULTI = True if CHECK_MANY_BY_MULTI.lower() == 'true' else False
+with open("config.yml", 'r') as stream:
+    try:
+        config = yaml.safe_load(stream)
+    except yaml.YAMLError as exc:
+        print(exc)
 
 # one
-ONE_OUTPUT_FILE = os.getenv('ONE_OUTPUT_FILE')
-ONE_EMAIL_LENGTH = int(os.getenv('ONE_EMAIL_LENGTH'))
-ONE_EMAIL_PREFIX_INT = str(os.getenv('ONE_EMAIL_PREFIX_INT')).zfill(ONE_EMAIL_LENGTH)
+CHECK_ONE = config['check_one']['turn_on']
+ONE_OUTPUT_FILE = config['check_one']['output_file']
+ONE_EMAIL_LENGTH = config['check_one']['email_length']
+ONE_EMAIL_PREFIX_INT = str(config['check_one']['email_prefix_int']).zfill(ONE_EMAIL_LENGTH)
 
 # single
-SINGLE_OUTPUT_FILE = os.getenv('SINGLE_OUTPUT_FILE')
-SINGLE_START_NUM = int(os.getenv('SINGLE_START_NUM'))
-SINGLE_END_NUM = int(os.getenv('SINGLE_END_NUM'))
-SINGLE_EMAIL_LENGTH = int(os.getenv('SINGLE_EMAIL_LENGTH'))
+CHECK_MANY_BY_SINGLE = config['check_many_by_single']['turn_on']
+SINGLE_OUTPUT_FILE = config['check_many_by_single']['output_file']
+SINGLE_START_NUM = config['check_many_by_single']['start_num']
+SINGLE_END_NUM = config['check_many_by_single']['end_num']
+SINGLE_EMAIL_LENGTH = config['check_many_by_single']['email_length']
 
 # multi
-MULTI_OUTPUT_FILE = os.getenv('MULTI_OUTPUT_FILE')
-MULTI_START_NUM = int(os.getenv('MULTI_START_NUM'))
-MULTI_END_NUM = int(os.getenv('MULTI_END_NUM'))
-MULTI_EMAIL_LENGTH = int(os.getenv('MULTI_EMAIL_LENGTH'))
-MULTI_BATCH_NUM = int(os.getenv('MULTI_BATCH_NUM'))
-MULTI_PROCESS_NUM = int(os.getenv('MULTI_PROCESS_NUM'))
+CHECK_MANY_BY_MULTI = config['check_many_by_multi']['turn_on']
+MULTI_OUTPUT_FILE = config['check_many_by_multi']['output_file']
+MULTI_START_NUM = config['check_many_by_multi']['start_num']
+MULTI_END_NUM = config['check_many_by_multi']['end_num']
+MULTI_EMAIL_LENGTH = config['check_many_by_multi']['email_length']
+MULTI_BATCH_NUM = config['check_many_by_multi']['batch_num']
+MULTI_PROCESS_NUM = config['check_many_by_multi']['process_num']
+
+# multi specific
+CHECK_MANY_BY_MULTI_SPECIFIC = config['check_many_by_multi_specific']['turn_on']
+SPECIFIC_MULTI_OUTPUT_FILE = config['check_many_by_multi_specific']['output_file']
+SPECIFIC_MULTI_FORMAT = config['check_many_by_multi_specific']['format']
+SPECIFIC_MULTI_BATCH_NUM = config['check_many_by_multi_specific']['batch_num']
+SPECIFIC_MULTI_PROCESS_NUM = config['check_many_by_multi_specific']['process_num']
