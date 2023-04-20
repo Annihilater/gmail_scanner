@@ -21,6 +21,10 @@ The program will return only one results:
 
 ## Update
 
+### 1.0.4
+
+- Feat: add logs dir
+
 ### 1.0.3
 
 - Feat: log to file
