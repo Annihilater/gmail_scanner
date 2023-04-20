@@ -104,6 +104,7 @@ git clone https://github.com/Annihilater/gmail_scanner
 cd gmail_scanner
 cp config-example.yml config.yml
 touch results.csv
+mkdir logs
 
 # edit the .env file
 
