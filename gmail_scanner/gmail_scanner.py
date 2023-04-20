@@ -231,7 +231,7 @@ def scan_int_multi_specific(email_format: dict, output_file: str, batch: int = 1
             f.write(text)
 
         args = []
-        for j in range(i, i + batch):
+        for j in range(i, i + batch - 1):
             email_prefix = email_prefix_list[j]
             args.append([email_prefix, output_file])
 

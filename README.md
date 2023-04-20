@@ -21,6 +21,10 @@ The program will return only one results:
 
 ## Update
 
+### 1.0.7
+
+- Fixed: out of range
+
 ### 1.0.6
 
 - Feat: support for special num
