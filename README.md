@@ -21,6 +21,11 @@ The program will return only one results:
 
 ## Update
 
+### 1.0.2
+
+- Fixed: print None
+- Feat: print batch num and email num
+
 ### 1.0.1
 
 - Fixed some bug
