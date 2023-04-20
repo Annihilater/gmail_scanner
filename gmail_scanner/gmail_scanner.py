@@ -225,7 +225,7 @@ def scan_int_multi_specific(email_format: dict, output_file: str, batch: int = 1
                                 email_prefix_list.append(email_prefix)
 
     current_batch = 1
-    for i in range(1, len(email_prefix_list), batch):
+    for i in range(0, len(email_prefix_list), batch):
         with open(log_file_name, mode='a', encoding='utf8') as f:
             text = f"current_batch: {current_batch} current_num: {i} total: {len(email_prefix_list)}\n"
             f.write(text)

@@ -21,6 +21,10 @@ The program will return only one results:
 
 ## Update
 
+### 1.0.8
+
+- Fixed some bug
+
 ### 1.0.7
 
 - Fixed: out of range
