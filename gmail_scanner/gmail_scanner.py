@@ -128,7 +128,7 @@ def scan_int_multi(start: int, end: int, email_length: int, output_file: str, ba
     :param processes: default 4
     :return:
     """
-    log_file_name = f"log/gmail_scanner_{current_time()}.log"
+    log_file_name = f"logs/gmail_scanner_{current_time()}.log"
 
     current_batch = 1
     for i in range(start, end, batch):

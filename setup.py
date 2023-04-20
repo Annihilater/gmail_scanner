@@ -11,7 +11,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="gmail_scanner",
-    version="1.0.4",
+    version="1.0.5",
     license='MIT',
     long_description=long_description,
     long_description_content_type="text/markdown",

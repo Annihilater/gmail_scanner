@@ -23,6 +23,10 @@ The program will return only one results:
 
 ### 1.0.4
 
+- Fixed: logs dir
+
+### 1.0.4
+
 - Feat: add logs dir
 
 ### 1.0.3
