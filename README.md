@@ -125,5 +125,5 @@ docker-compose up -d
 
 ## Author
 
-**GmailScanner** © [coo](https://github.com/Annihilater), Released under the [MIT](./LICENSE) License.<br>
+**GmailScanner** © [Annihilater](https://github.com/Annihilater), Released under the [MIT](./LICENSE) License.<br>
 
